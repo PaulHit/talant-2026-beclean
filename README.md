@@ -6,7 +6,6 @@ Site-ul oficial al fazei județene a concursului biblic **Talantul în Negoț 20
 
 - **Next.js 14** (App Router)
 - **Tailwind CSS**
-- **Google Sheets API** (pentru căutarea participanților)
 - **Vercel** (deployment)
 
 ---
@@ -44,20 +43,9 @@ Structura tabelului (Sheet-ul trebuie să se numească **`Participants`**):
 - **Rândul 1** = header (ignorat automat)
 - **Rândul 2+** = participanți
 
-### 2. Creează un Service Account
-
-1. Mergi la [Google Cloud Console](https://console.cloud.google.com/)
-2. Creează un proiect nou (sau folosește unul existent)
-3. Activează **Google Sheets API**
-4. Mergi la **IAM & Admin → Service Accounts → Create Service Account**
-5. Descarcă fișierul JSON cu credențiale
-6. **Dă acces** la sheet: Share sheet-ul cu email-ul service account-ului (cu rol Viewer)
-
-### 3. Completează `.env.local`
+### 2. Completează `.env.local`
 
 ```env
-GOOGLE_SERVICE_ACCOUNT_EMAIL=talant2026@proiect.iam.gserviceaccount.com
-GOOGLE_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----\nMII...\n-----END RSA PRIVATE KEY-----\n"
 SHEET_ID=1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms
 ```
 
@@ -83,8 +71,6 @@ Mergi la **Vercel Dashboard → Project → Settings → Environment Variables**
 
 | Key | Value |
 |-----|-------|
-| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | email-ul service account |
-| `GOOGLE_PRIVATE_KEY` | cheia privată (inclusiv `\n`) |
 | `SHEET_ID` | ID-ul sheet-ului |
 
 ---
@@ -94,7 +80,6 @@ Mergi la **Vercel Dashboard → Project → Settings → Environment Variables**
 ### Înainte de concurs
 
 - [ ] `app/program/page.js` → înlocuiește array-ul `PROGRAM` cu programul real
-- [ ] `app/locatii/page.js` → actualizează adresa terenurilor sportive (Badoc/Corabian)
 - [ ] `app/live/page.js` → pune `YOUTUBE_URL` și `EMBED_URL`
 - [ ] Google Sheet → completează participanții cu locurile alocate
 
@@ -133,10 +118,3 @@ talant2026/
 ```
 
 ---
-
-## Securitate
-
-- **Fără SQL** – datele vin direct din Google Sheets, zero risc de SQL injection
-- **Input sanitizat** – query-ul de căutare e filtrat (doar litere + diacritice + spații)
-- **Read-only** – Service Account-ul are doar permisiuni de citire
-- **Env vars** – credențialele nu intră niciodată în codul sursă
