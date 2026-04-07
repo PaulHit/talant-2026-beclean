@@ -21,9 +21,6 @@ export default function Footer() {
             <p className="text-white/60">
               18 Aprilie 2026 • Beclean, Bistrița-Năsăud
             </p>
-            <p className="text-white/40 text-xs mt-1">
-              Un proiect biblic al Departamentului Copii CCP
-            </p>
           </div>
         </div>
 

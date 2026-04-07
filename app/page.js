@@ -95,10 +95,6 @@ export default function HomePage() {
               <span className="text-white/60 text-2xl md:text-3xl block mt-1">2026</span>
             </h1>
 
-            <p className="text-white/70 text-lg mb-2 fade-up fade-up-delay-2">
-              Un proiect biblic al Departamentului Copii CCP
-            </p>
-
             <div className="flex flex-wrap items-center gap-4 mt-8 fade-up fade-up-delay-3">
               <div className="flex items-center gap-2 bg-white/10 rounded-xl px-4 py-2">
                 <span>📅</span>
