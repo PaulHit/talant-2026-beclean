@@ -18,7 +18,7 @@ const nunito = Nunito({
 export const metadata = {
   title: 'Talantul în Negoț 2026 – Faza Județeană Bistrița-Năsăud',
   description:
-    'Site oficial al fazei județene Bistrița-Năsăud a concursului biblic Talantul în Negoț 2026, organizat la Biserica Penticostală Beclean, 18 Aprilie 2026.',
+    'Site oficial al fazei județene Bistrița-Năsăud a concursului biblic Talantul în Negoț 2026, organizat la Biserica Penticostală Nr. 1 Beclean, 18 Aprilie 2026.',
   openGraph: {
     title: 'Talantul în Negoț 2026 – Faza Județeană',
     description: 'Concurs biblic | 18 Aprilie 2026 | Beclean',

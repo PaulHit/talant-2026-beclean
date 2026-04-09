@@ -72,7 +72,7 @@ export default function HomePage() {
           />
           <img
             src="/biserica.png"
-            alt="Biserica Penticostală Beclean"
+            alt="Biserica Penticostală Nr. 1 Beclean"
             className="w-full h-full object-cover object-center"
             style={{ opacity: 0.35, mixBlendMode: 'luminosity' }}
           />
