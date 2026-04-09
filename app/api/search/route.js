@@ -43,11 +43,13 @@ export async function GET(request) {
 
   try {
     const participants = await getParticipants();
-    const normalizedQuery = normalize(query);
+    const queryWords = normalize(query).split(/\s+/).filter(Boolean);
 
-    const results = participants.filter((p) =>
-      normalize(p.nume).includes(normalizedQuery)
-    );
+    const results = participants.filter((p) => {
+      if (!p.nume) return false;
+      const name = normalize(p.nume);
+      return queryWords.every((word) => name.includes(word));
+    });
 
     // Cap results to 20 to avoid huge payloads
     return NextResponse.json({ results: results.slice(0, 20) });
