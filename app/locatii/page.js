@@ -5,11 +5,11 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 const locations = [
   {
     name: 'Biserica Penticostală Nr. 1 Beclean',
-    tag: 'Concurs',
-    tagColor: 'bg-gold-100 text-gold-700',
+    // tag: 'Concurs',
+    // tagColor: 'bg-gold-100 text-gold-700',
     emoji: '⛪',
     desc: 'Locația principală a concursului.',
-    address: 'Strada Ion Pop-Reteganu 10-12',
+    address: 'Strada Ion Pop-Reteganu 10-12, Beclean',
     imageSrc: '/biserica.png',
     imageAlt: 'Biserica Penticostală Nr. 1 Beclean',
     mapsLink:
@@ -32,6 +32,7 @@ const locations = [
     imageAlt: 'Băile Figa',
     mapsLink: 'https://maps.google.com/?q=Baile+Figa+Beclean',
     photos: [
+      '/figagate.png',
       '/figapark1.jpg',
       '/figapark2.jpg',
       '/figapark3.jpg',
@@ -43,25 +44,12 @@ const locations = [
     tag: 'Activități',
     tagColor: 'bg-emerald-100 text-emerald-700',
     emoji: '⚽',
-    desc: '2 terenuri de fotbal sintetic și 2 terenuri de tenis (de picior).',
-    address: 'Beclean, Bistrița-Năsăud',
+    desc: '1 teren de fotbal sintetic și 2 terenuri de tenis (de picior).',
+    address: 'Strada Someșului 6, Beclean',
     imageSrc: '/badoc.PNG',
     imageAlt: 'Terenuri Sportive Beclean',
-    photos: [],
-    subLocations: [
-      {
-        name: 'Sintetic Badoc',
-        address: 'Strada Someșului 6',
-        mapsLink: 'https://maps.google.com/?q=Sintetic+Badoc+Beclean',
-        photos: ['/badoc_drona.jpg', '/badoc_side.png'],
-      },
-      {
-        name: 'Baza Sportivă Corabian',
-        address: 'Strada Petru Maior 5',
-        mapsLink: 'https://maps.app.goo.gl/h2oTK6yhdPVTYc8W6',
-        photos: ['/corabian1.png', '/corabian2.png'],
-      },
-    ],
+    mapsLink: 'https://maps.google.com/?q=Sintetic+Badoc+Beclean',
+    photos: ['/badoc_drona.jpg', '/badoc_side.png'],
   },
 ];
 

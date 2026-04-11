@@ -40,6 +40,7 @@ export default function CautarePage() {
   const [results, setResults] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [mapOpen, setMapOpen] = useState(false);
   const debounceRef = useRef(null);
 
   const search = useCallback(async (value) => {
@@ -168,6 +169,42 @@ export default function CautarePage() {
             <p className="text-gray-400">
               Introdu un nume pentru a începe căutarea
             </p>
+          </div>
+        )}
+
+        <div className="mt-10 fade-up">
+          <p className="text-xs font-semibold text-navy-700 uppercase tracking-wide mb-3">
+            Harta sălii
+          </p>
+          <img
+            src="/harta.jpg"
+            alt="Harta sălii – secțiunile de locuri"
+            className="w-full rounded-2xl shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-shadow duration-200"
+            onClick={() => setMapOpen(true)}
+          />
+          <p className="text-xs text-gray-400 mt-2 text-center">Apasă pe hartă pentru a mări</p>
+        </div>
+
+        {mapOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+            onClick={() => setMapOpen(false)}
+          >
+            <button
+              onClick={() => setMapOpen(false)}
+              className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center
+                         rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <img
+              src="/harta.jpg"
+              alt="Harta sălii – secțiunile de locuri"
+              className="max-w-full max-h-[90vh] rounded-xl shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
           </div>
         )}
     </div>
