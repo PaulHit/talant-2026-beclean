@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 const locations = [
   {
@@ -154,6 +154,10 @@ function LocationModal({ location, onClose }) {
   const hasSubLocations = subLocations && subLocations.length > 0;
 
   const handleClose = useCallback(() => onClose(), [onClose]);
+  const panelRef = useRef(null);
+  const dragState = useRef({ startY: 0, currentY: 0, dragging: false });
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDismissing, setIsDismissing] = useState(false);
 
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && handleClose();
@@ -165,20 +169,74 @@ function LocationModal({ location, onClose }) {
     };
   }, [handleClose]);
 
+  const handleTouchStart = useCallback((e) => {
+    const panel = panelRef.current;
+    if (!panel || panel.scrollTop > 0) return;
+    dragState.current = { startY: e.touches[0].clientY, currentY: e.touches[0].clientY, dragging: false };
+  }, []);
+
+  const handleTouchMove = useCallback((e) => {
+    const ds = dragState.current;
+    const panel = panelRef.current;
+    if (!panel) return;
+    const y = e.touches[0].clientY;
+    const delta = y - ds.startY;
+
+    if (!ds.dragging && delta > 8 && panel.scrollTop <= 0) {
+      ds.dragging = true;
+    }
+
+    if (ds.dragging) {
+      e.preventDefault();
+      ds.currentY = y;
+      setDragOffset(Math.max(0, delta));
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    const ds = dragState.current;
+    if (!ds.dragging) return;
+    const delta = ds.currentY - ds.startY;
+    if (delta > 120) {
+      setIsDismissing(true);
+      setDragOffset(window.innerHeight);
+      setTimeout(handleClose, 200);
+    } else {
+      setDragOffset(0);
+    }
+    ds.dragging = false;
+  }, [handleClose]);
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-6"
       onClick={handleClose}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+      <div
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        style={{ opacity: isDismissing ? 0 : Math.max(0, 1 - dragOffset / 300), transition: isDismissing ? 'opacity 0.2s' : undefined }}
+      />
 
       {/* Panel */}
       <div
+        ref={panelRef}
         className="relative bg-white w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl
-                   max-h-[92vh] overflow-y-auto animate-slide-up shadow-2xl"
+                   max-h-[92vh] overflow-y-auto shadow-2xl"
+        style={{
+          transform: `translateY(${dragOffset}px)`,
+          transition: dragState.current.dragging ? 'none' : 'transform 0.25s ease-out',
+          animation: dragOffset === 0 && !isDismissing ? 'slideUp 0.25s ease-out forwards' : 'none',
+        }}
         onClick={(e) => e.stopPropagation()}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
+        {/* Drag handle (mobile) */}
+        <div className="sm:hidden flex justify-center pt-2 pb-1">
+          <div className="w-10 h-1 rounded-full bg-gray-300" />
+        </div>
         {/* Close button */}
         <button
           onClick={handleClose}
