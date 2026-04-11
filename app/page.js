@@ -6,32 +6,32 @@ const quickLinks = [
     icon: '🔍',
     title: 'Locul meu',
     desc: 'Caută locul tău alocat în sală',
-    color: 'from-blue-50 to-blue-100 border-blue-200',
-    textColor: 'text-blue-900',
+    color: 'from-blue-50/80 to-blue-100/70 border-blue-200/60',
+    textColor: 'text-blue-800',
   },
   {
     href: '/program',
     icon: '📋',
     title: 'Program',
     desc: 'Vezi programul zilei de concurs',
-    color: 'from-amber-50 to-amber-100 border-amber-200',
-    textColor: 'text-amber-900',
+    color: 'from-amber-50/80 to-amber-100/70 border-amber-200/60',
+    textColor: 'text-amber-800',
   },
   {
     href: '/locatii',
     icon: '📍',
     title: 'Locații',
     desc: 'Harta și adresele importante',
-    color: 'from-emerald-50 to-emerald-100 border-emerald-200',
-    textColor: 'text-emerald-900',
+    color: 'from-emerald-50/80 to-emerald-100/70 border-emerald-200/60',
+    textColor: 'text-emerald-800',
   },
   {
     href: '/live',
     icon: '📺',
     title: 'Live',
     desc: 'Urmărește transmisiunea live',
-    color: 'from-red-50 to-red-100 border-red-200',
-    textColor: 'text-red-900',
+    color: 'from-red-50/80 to-red-100/70 border-red-200/60',
+    textColor: 'text-red-800',
   },
 ];
 
@@ -39,23 +39,14 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative bg-navy-950 text-white overflow-hidden">
-
-        {/* Background gradient texture */}
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `radial-gradient(circle at 20% 50%, #C9A44C 0%, transparent 50%),
-                              radial-gradient(circle at 80% 20%, #3a5f8a 0%, transparent 40%)`,
-          }}
-        />
+      <section className="relative text-white overflow-hidden" style={{ backgroundColor: '#041224' }}>
 
         {/* Church image — right side, blended */}
         <div className="absolute inset-y-0 right-0 w-full md:w-[58%] pointer-events-none select-none">
           <div
             className="absolute inset-0 z-10"
             style={{
-              background: 'linear-gradient(to right, #071224 0%, #071224 8%, rgba(7,18,36,0.5) 40%, transparent 65%)',
+              background: 'linear-gradient(to right, #041224 0%, #041224 8%, rgba(4,18,36,0.5) 40%, transparent 65%)',
             }}
           />
           <div

@@ -9,12 +9,17 @@ const locations = [
     tagColor: 'bg-gold-100 text-gold-700',
     emoji: '⛪',
     desc: 'Locația principală a concursului. Aici se desfășoară toate probele.',
-    address: 'Strada Ion Pop-Reteganu 10-12, 425100 Beclean',
+    address: 'Strada Ion Pop-Reteganu 10-12',
     imageSrc: '/biserica.png',
     imageAlt: 'Biserica Penticostală Nr. 1 Beclean',
     mapsLink:
       'https://maps.google.com/?q=Strada+Ion+Pop-Reteganu+10-12,+425100+Beclean',
-    photos: [],
+    photos: [
+      '/biserica_poarta.jpg',
+      '/biserica_logo.jpg',
+      '/biserica_interior2.jpg',
+      '/biserica_interior1.jpg',
+    ],
   },
   {
     name: 'Băile Figa',
@@ -22,11 +27,16 @@ const locations = [
     tagColor: 'bg-emerald-100 text-emerald-700',
     emoji: '🌳',
     desc: 'Parc de agrement cu terenuri sportive pentru activitățile recreative din timpul pauzei de prânz.',
-    address: 'Băile Figa, Beclean, Bistrița-Năsăud',
-    imageSrc: '/figa.png',
+    address: 'Figa, Bistrița-Năsăud',
+    imageSrc: '/figapark1.jpg',
     imageAlt: 'Băile Figa',
     mapsLink: 'https://maps.google.com/?q=Baile+Figa+Beclean',
-    photos: [],
+    photos: [
+      '/figapark1.jpg',
+      '/figapark2.jpg',
+      '/figapark3.jpg',
+      '/figaterenuri.png',
+    ],
   },
   {
     name: 'Terenuri Sportive',
@@ -43,10 +53,13 @@ const locations = [
         name: 'Sintetic Badoc',
         address: 'Strada Someșului 6, 425100 Beclean',
         mapsLink: 'https://maps.google.com/?q=Sintetic+Badoc+Beclean',
+        photos: ['/badoc_drona.jpg', '/badoc_side.png'],
       },
       {
         name: 'Baza Sportivă Corabian',
+        address: 'Strada Petru Maior 5',
         mapsLink: 'https://maps.app.goo.gl/h2oTK6yhdPVTYc8W6',
+        photos: ['/corabian1.png', '/corabian2.png'],
       },
     ],
   },
@@ -209,46 +222,22 @@ function LocationModal({ location, onClose }) {
             <p className="text-gray-500 text-sm mt-2">{desc}</p>
           </div>
 
-          {/* Photo gallery */}
-          <div>
-            <p className="text-xs font-semibold text-navy-700 uppercase tracking-wide mb-3">
-              Fotografii
-            </p>
-            {photos.length > 0 ? (
-              <div className="grid grid-cols-2 gap-2">
-                {photos.map((photo, i) => (
-                  <img
-                    key={i}
-                    src={photo}
-                    alt=""
-                    className="rounded-xl object-cover aspect-video w-full"
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="bg-gray-50 rounded-xl p-6 text-center">
-                <p className="text-2xl mb-1">📷</p>
-                <p className="text-gray-400 text-sm">Fotografii în curând...</p>
-              </div>
-            )}
-          </div>
-
-          {/* Maps / sub-locations */}
+          {/* Sub-locations: photos + location interleaved */}
           {hasSubLocations ? (
-            <div>
-              <p className="text-xs font-semibold text-navy-700 uppercase tracking-wide mb-3">
-                Locații
-              </p>
-              <div className="flex flex-col gap-2">
-                {subLocations.map((loc, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center justify-between gap-3 bg-gray-50 rounded-xl p-4"
-                  >
+            <div className="flex flex-col gap-6">
+              {subLocations.map((loc, i) => (
+                <div key={i} className="flex flex-col gap-3">
+                  {loc.photos && loc.photos.map((photo, j) => (
+                    <img
+                      key={j}
+                      src={photo}
+                      alt=""
+                      className="rounded-xl object-cover w-full"
+                    />
+                  ))}
+                  <div className="flex items-center justify-between gap-3 bg-gray-50 rounded-xl p-4">
                     <div className="min-w-0">
-                      <p className="font-semibold text-navy-900 text-sm">
-                        {loc.name}
-                      </p>
+                      <p className="font-semibold text-navy-900 text-sm">{loc.name}</p>
                       {loc.address && (
                         <p className="text-gray-400 text-xs mt-0.5 truncate">
                           📍 {loc.address}
@@ -264,20 +253,44 @@ function LocationModal({ location, onClose }) {
                       🧭 Maps
                     </a>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           ) : (
-            mapsLink && (
-              <a
-                href={mapsLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary text-sm w-full justify-center"
-              >
-                🧭 Deschide în Google Maps
-              </a>
-            )
+            <>
+              <div>
+                <p className="text-xs font-semibold text-navy-700 uppercase tracking-wide mb-3">
+                  Fotografii
+                </p>
+                {photos.length > 0 ? (
+                  <div className="flex flex-col gap-3">
+                    {photos.map((photo, i) => (
+                      <img
+                        key={i}
+                        src={photo}
+                        alt=""
+                        className="rounded-xl object-cover w-full"
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="bg-gray-50 rounded-xl p-6 text-center">
+                    <p className="text-2xl mb-1">📷</p>
+                    <p className="text-gray-400 text-sm">Fotografii în curând...</p>
+                  </div>
+                )}
+              </div>
+              {mapsLink && (
+                <a
+                  href={mapsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary text-sm w-full justify-center"
+                >
+                  🧭 Deschide în Google Maps
+                </a>
+              )}
+            </>
           )}
         </div>
       </div>
