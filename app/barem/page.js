@@ -1,6 +1,6 @@
 // This is a SERVER component — the lock logic runs on the server.
-// Unlock time: 18 April 2026, 14:00 Romanian time (EET = UTC+3)
-const UNLOCK_TIME = new Date('2026-04-18T14:00:00+03:00');
+// Unlock time: 18 April 2026, 13:00 Romanian time (EET = UTC+3)
+const UNLOCK_TIME = new Date('2026-04-18T13:00:00+03:00');
 
 export const metadata = {
   title: 'Barem – Talantul în Negoț 2026',

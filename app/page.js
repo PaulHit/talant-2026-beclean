@@ -21,7 +21,7 @@ const quickLinks = [
     href: '/locatii',
     icon: '📍',
     title: 'Locații',
-    desc: 'Harta și adresele importante',
+    desc: 'Vezi locațiile activităților',
     color: 'from-emerald-50/80 to-emerald-100/70 border-emerald-200/60',
     textColor: 'text-emerald-800',
   },
@@ -156,7 +156,7 @@ export default function HomePage() {
             </h2>
             <p className="text-gray-500 text-sm mb-4">
               Baremul de corectare va fi disponibil după finalizarea
-              examenului, pe <strong className="text-navy-700">18 Aprilie, ora 14:00</strong>.
+              examenului, pe <strong className="text-navy-700">18 Aprilie, ora 13:00</strong>.
             </p>
             <Link href="/barem" className="btn-primary text-sm">
               📄 Vezi baremul

@@ -86,7 +86,7 @@ Mergi la **Vercel Dashboard → Project → Settings → Environment Variables**
 ### După concurs
 
 - [ ] `app/galerie/page.js` → pune `DRIVE_LINK` cu albumul foto
-- [ ] `app/barem/page.js` → pune `BAREM_LINK` (se deblochează automat la ora 14:00)
+- [ ] `app/barem/page.js` → pune `BAREM_LINK` (se deblochează la ora 13:00)
 
 ### Domeniu custom (când e disponibil)
 
@@ -105,7 +105,7 @@ talant2026/
 │   ├── locatii/page.js    # Hărți și adrese
 │   ├── cautare/page.js    # Căutare participant
 │   ├── live/page.js       # Transmisiune live
-│   ├── barem/page.js      # Barem (blocat până la 14:00)
+│   ├── barem/page.js      # Barem (blocat până la 13:00)
 │   ├── galerie/page.js    # Galerie foto
 │   └── api/search/
 │       └── route.js       # API endpoint căutare
