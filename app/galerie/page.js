@@ -58,8 +58,7 @@ export default function GaleriePage() {
               Galeria va fi disponibilă după concurs
             </h2>
             <p className="text-gray-400 text-sm max-w-xs mx-auto">
-              Pozele vor fi încărcate seara zilei de{' '}
-              <strong className="text-navy-700">18 Aprilie 2026</strong>.
+              Pozele vor fi încărcate cât mai curând posibil după concurs.
               Revino pentru a vedea momentele frumoase din zi.
             </p>
           </>
