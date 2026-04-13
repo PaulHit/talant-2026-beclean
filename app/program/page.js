@@ -2,81 +2,66 @@ export const metadata = {
   title: 'Program – Talantul în Negoț 2026',
 };
 
-// ─────────────────────────────────────────────────────────
-// TODO: Înlocuiește array-ul de mai jos cu programul real
-// când îl primești. Fiecare obiect are:
-//   ora: string   (ex: "09:00")
-//   titlu: string (ex: "Deschidere oficială")
-//   detalii: string (opțional, poate fi '')
-//   tip: 'normal' | 'important' | 'pauza'
-// ─────────────────────────────────────────────────────────
 const PROGRAM = [
   {
-    ora: '10:30',
-    titlu: 'Înregistrare și Gustare',
+    ora: '10:00',
+    titlu: 'Înregistrare și gustare',
     detalii: 'Primirea participanților și servirea unei gustări',
-    tip: 'normal',
+    color: 'green',
   },
   {
-    ora: '11:30',
+    ora: '11:00',
     titlu: 'Instruire',
     detalii: 'Ocuparea locurilor în biserică și prezentarea instrucțiunilor de desfășurare.',
-    tip: 'important',
+    color: 'gold',
   },
   {
-    ora: '11:40',
-    titlu: 'Salutări și Rugăciune',
-    detalii: 'Primirea unui mesaj din partea lucrătorului bisericii locale, urmată de o rugăciune.',
-    tip: 'important',
+    ora: '11:20',
+    titlu: 'Salutări, Rugăciune și Cântare',
+    detalii: 'Primirea unui mesaj din partea pastorului bisericii locale',
+    color: 'gold',
   },
   {
     ora: '12:00',
     titlu: 'Concurs - varianta Clasic',
     detalii: '',
-    tip: 'important',
+    color: 'gold',
   },
   {
     ora: '13:00',
     titlu: 'Poză de grup',
     detalii: '',
-    tip: 'normal',
+    color: 'gold',
   },
   {
     ora: '13:15',
     titlu: 'Prânz',
-    detalii: 'Servirea prânzului în curtea bisericii.',
-    tip: 'pauza',
+    detalii: 'Servirea prânzului în curtea bisericii',
+    color: 'green',
   },
   {
     ora: '14:15',
     titlu: 'Deplasare la jocuri',
-    detalii: 'Ne deplasăm către locațiile unde se vor desfășura activitățile recreative.',
-    tip: 'important',
+    detalii: 'Ne deplasăm către locațiile unde se vor desfășura activitățile recreative',
+    color: 'green',
   },
   {
     ora: '16:00',
-    titlu: 'Premiere și încheiere',
-    detalii: 'Recunoașterea participanților și împărtășirea momentelor finale.',
-    tip: 'important',
+    titlu: 'Premierea participanților',
+    detalii: '',
+    color: 'gold',
   },
   {
     ora: '17:00',
-    titlu: 'Întoarcerea acasa',
-    detalii: 'Ne despărțim cu amintiri frumoase și zâmbete.',
-    tip: 'important',
+    titlu: 'Întoarcerea acasă',
+    detalii: 'Ne despărțim cu amintiri frumoase și zâmbete',
+    color: 'gold',
   },
 ];
 
-const tipStyle = {
-  important: 'bg-gold-500 text-white',
-  pauza: 'bg-emerald-100 text-emerald-800',
-  normal: 'bg-navy-100 text-navy-700',
-};
-
-const tipDot = {
-  important: 'bg-gold-500',
-  pauza: 'bg-emerald-400',
-  normal: 'bg-navy-400',
+const dotColor = {
+  gold: 'bg-gold-500',
+  green: 'bg-emerald-400',
 };
 
 export default function ProgramPage() {
@@ -90,13 +75,8 @@ export default function ProgramPage() {
         </p>
       </div>
 
-      {/* Notice - remove when program is confirmed */}
-      <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8 text-sm text-amber-800 fade-up fade-up-delay-1">
-        ⚠️ <strong>Program preliminar</strong> — Va fi actualizat când primim versiunea finală.
-      </div>
-
       {/* Timeline */}
-      <div className="relative fade-up fade-up-delay-2">
+      <div className="relative fade-up fade-up-delay-1">
         {/* Vertical line */}
         <div className="absolute left-[52px] top-4 bottom-4 w-0.5 bg-gray-100" />
 
@@ -113,25 +93,13 @@ export default function ProgramPage() {
               {/* Dot */}
               <div className="flex-shrink-0 mt-0.5 relative z-10">
                 <div
-                  className={`w-3 h-3 rounded-full border-2 border-white shadow-sm ${tipDot[item.tip]}`}
+                  className={`w-3 h-3 rounded-full border-2 border-white shadow-sm ${dotColor[item.color]}`}
                 />
               </div>
 
               {/* Content */}
               <div className="flex-1 bg-white rounded-xl border border-gray-100 p-4 shadow-sm">
-                <div className="flex items-start justify-between gap-2 flex-wrap">
-                  <p className="font-semibold text-navy-900">{item.titlu}</p>
-                  {item.tip === 'important' && (
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-gold-100 text-gold-700 font-semibold flex-shrink-0">
-                      Principal
-                    </span>
-                  )}
-                  {item.tip === 'pauza' && (
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-semibold flex-shrink-0">
-                      Pauză
-                    </span>
-                  )}
-                </div>
+                <p className="font-semibold text-navy-900">{item.titlu}</p>
                 {item.detalii && (
                   <p className="text-gray-500 text-sm mt-1">{item.detalii}</p>
                 )}
