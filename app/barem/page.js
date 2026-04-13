@@ -16,12 +16,7 @@ export default function BaremPage() {
   const now = new Date();
   const isUnlocked = now >= UNLOCK_TIME;
 
-  const pad = (n) => String(n).padStart(2, '0');
-  const unlockFormatted = `${pad(UNLOCK_TIME.getDate())}.${pad(
-    UNLOCK_TIME.getMonth() + 1
-  )}.${UNLOCK_TIME.getFullYear()} ora ${pad(UNLOCK_TIME.getHours())}:${pad(
-    UNLOCK_TIME.getMinutes()
-  )}`;
+  const unlockFormatted = '18.04.2026 ora 13:00';
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-10">
