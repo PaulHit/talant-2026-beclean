@@ -1,6 +1,9 @@
-// This is a SERVER component — the lock logic runs on the server.
-// Unlock time: 18 April 2026, 13:00 Romanian time (EET = UTC+3)
+import CountdownDisplay from '@/components/CountdownDisplay';
+
 const UNLOCK_TIME = new Date('2026-04-18T13:00:00+03:00');
+const UNLOCK_TIME_ISO = '2026-04-18T13:00:00+03:00';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: 'Barem – Talantul în Negoț 2026',
@@ -77,7 +80,7 @@ export default function BaremPage() {
             </p>
 
             {/* Countdown display */}
-            <CountdownDisplay unlockTime={UNLOCK_TIME} />
+            <CountdownDisplay unlockTime={UNLOCK_TIME_ISO} />
           </div>
 
           <p className="text-center text-gray-400 text-xs mt-4">
@@ -89,33 +92,3 @@ export default function BaremPage() {
   );
 }
 
-// Simple static countdown (no JS - shows remaining time at render)
-function CountdownDisplay({ unlockTime }) {
-  const now = new Date();
-  const diff = unlockTime - now;
-
-  if (diff <= 0) return null;
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-  return (
-    <div className="flex justify-center gap-3">
-      {days > 0 && (
-        <div className="bg-navy-50 rounded-xl px-4 py-3 min-w-[64px]">
-          <p className="font-display font-bold text-3xl text-navy-900">{days}</p>
-          <p className="text-xs text-gray-400">zile</p>
-        </div>
-      )}
-      <div className="bg-navy-50 rounded-xl px-4 py-3 min-w-[64px]">
-        <p className="font-display font-bold text-3xl text-navy-900">{hours}</p>
-        <p className="text-xs text-gray-400">ore</p>
-      </div>
-      <div className="bg-navy-50 rounded-xl px-4 py-3 min-w-[64px]">
-        <p className="font-display font-bold text-3xl text-navy-900">{minutes}</p>
-        <p className="text-xs text-gray-400">minute</p>
-      </div>
-    </div>
-  );
-}
