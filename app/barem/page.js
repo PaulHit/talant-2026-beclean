@@ -1,7 +1,7 @@
 import CountdownDisplay from '@/components/CountdownDisplay';
 
-const UNLOCK_TIME = new Date('2026-04-18T13:00:00+03:00');
-const UNLOCK_TIME_ISO = '2026-04-18T13:00:00+03:00';
+const UNLOCK_TIME = new Date('2026-04-18T00:00:00+03:00');
+const UNLOCK_TIME_ISO = '2026-04-18T00:00:00+03:00';
 
 export const dynamic = 'force-dynamic';
 
@@ -9,11 +9,11 @@ export const metadata = {
   title: 'Barem – Talantul în Negoț 2026',
 };
 
-// ─────────────────────────────────────────────────────────
-// TODO: Pune link-ul real al baremului când îl primești.
-// Poate fi un link Google Drive, PDF, etc.
-// ─────────────────────────────────────────────────────────
-const BAREM_LINK = null; // ex: 'https://drive.google.com/file/d/...'
+const BAREM_FILES = [
+  { label: 'Barem V1', href: '/barem-v1.pdf' },
+  { label: 'Barem V2', href: '/barem-v2.pdf' },
+  { label: 'Barem V3', href: '/barem-v3.pdf' },
+];
 
 export default function BaremPage() {
   const now = new Date();
@@ -44,25 +44,22 @@ export default function BaremPage() {
             </div>
           </div>
 
-          {BAREM_LINK ? (
-            <>
-              <p className="text-gray-500 text-sm mb-5">
-                Apasă butonul de mai jos pentru a accesa baremul oficial.
-              </p>
+          <p className="text-gray-500 text-sm mb-5">
+            Alege varianta de barem corespunzătoare.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            {BAREM_FILES.map((file) => (
               <a
-                href={BAREM_LINK}
+                key={file.href}
+                href={file.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-gold"
+                className="btn-gold text-center"
               >
-                📄 Descarcă / Vezi baremul
+                📄 {file.label}
               </a>
-            </>
-          ) : (
-            <p className="text-amber-700 bg-amber-50 rounded-xl p-3 text-sm">
-              ⚠️ Link-ul la barem nu a fost încă adăugat. Revino în curând.
-            </p>
-          )}
+            ))}
+          </div>
         </div>
       ) : (
         /* ── LOCKED ── */
