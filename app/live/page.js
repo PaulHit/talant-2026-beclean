@@ -15,8 +15,8 @@ export const metadata = {
 //   const YOUTUBE_URL = 'https://youtu.be/ID_VIDEO';
 //   const EMBED_URL = 'https://www.youtube.com/embed/ID_VIDEO';
 // ─────────────────────────────────────────────────────────
-const YOUTUBE_URL = null;   // ← pune link-ul aici
-const EMBED_URL = null;     // ← pune embed URL aici (sau null dacă nu ai)
+const YOUTUBE_URL = 'https://www.youtube.com/live/_-iA8NsI3N4';
+const EMBED_URL = 'https://www.youtube.com/embed/_-iA8NsI3N4';
 
 export default function LivePage() {
   const concursDate = new Date('2026-04-18T09:00:00+03:00');
