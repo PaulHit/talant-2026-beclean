@@ -169,8 +169,8 @@ export default function HomePage() {
               📸 Galerie Foto
             </h2>
             <p className="text-gray-500 text-sm mb-4">
-              Pozele de la concurs vor fi disponibile{' '}
-              <strong className="text-navy-700">în curând</strong>.
+              Albumul cu <strong className="text-navy-700">539 de fotografii</strong> de
+              la concurs este disponibil.
             </p>
             <Link href="/galerie" className="btn-gold text-sm">
               📸 Vezi galeria
