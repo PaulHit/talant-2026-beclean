@@ -51,10 +51,10 @@ export default function GaleriePage() {
           Previzualizare
         </h2>
         <p className="text-gray-400 text-sm mb-2">
-          O selecție din momentele concursului - apasă pe o poză pentru a o mări
+          O selecție din momentele concursului
         </p>
 
-        <GalleryPreview albumLink={ALBUM_LINK} totalPhotos={TOTAL_PHOTOS} />
+        <GalleryPreview />
       </div>
     </div>
   );
