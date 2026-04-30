@@ -29,9 +29,6 @@ export default function GaleriePage() {
               <p className="font-display font-bold text-navy-900 text-lg">
                 Vezi toate pozele din album
               </p>
-              <p className="text-gray-400 text-sm">
-                Albumul este în curs de completare - pozele se încarcă treptat
-              </p>
             </div>
           </div>
           <a

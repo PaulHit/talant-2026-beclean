@@ -155,8 +155,7 @@ export default function HomePage() {
               📄 Barem
             </h2>
             <p className="text-gray-500 text-sm mb-4">
-              Baremul de corectare va fi disponibil după finalizarea
-              examenului, pe <strong className="text-navy-700">18 Aprilie, ora 13:00</strong>.
+            Baremul de corectare este disponibil.
             </p>
             <Link href="/barem" className="btn-primary text-sm">
               📄 Vezi baremul
@@ -169,8 +168,7 @@ export default function HomePage() {
               📸 Galerie Foto
             </h2>
             <p className="text-gray-500 text-sm mb-4">
-              Albumul cu <strong className="text-navy-700">539 de fotografii</strong> de
-              la concurs este disponibil.
+              Albumul de fotografii de la concurs este disponibil.
             </p>
             <Link href="/galerie" className="btn-gold text-sm">
               📸 Vezi galeria
