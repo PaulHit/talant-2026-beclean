@@ -1,120 +1,83 @@
-# Talantul în Negoț 2026 – Site Județean Bistrița-Năsăud
+# Talantul în Negoț 2026 – County Stage Event Platform
 
-Site-ul oficial al fazei județene a concursului biblic **Talantul în Negoț 2026**.
+Official event management platform for the 2026 county-level "Talantul în Negoț" Bible competition in Bistrița-Năsăud, Romania. This web application served as the central information hub for hundreds of participants, providing real-time room allocations, schedules, and live updates.
 
-## Stack
+![Project Preview](front.jpg)
 
-- **Next.js 14** (App Router)
-- **Tailwind CSS**
-- **Vercel** (deployment)
+## 🚀 Key Features
 
----
+- **Real-time Participant Search:** Searchable database for room and seat assignments, powered by Google Sheets.
+- **Dynamic Event Schedule:** Interactive timeline of the competition's activities.
+- **Live Stream Integration:** Embedded YouTube broadcast for remote viewing.
+- **Automatic Resource Release:** Time-gated release of competition keys (Barem) and results.
+- **Photo Gallery:** Integrated media preview for event highlights.
+- **Responsive Design:** Optimized for mobile-first usage during the event day.
 
-## Setup local
+## 🛠️ Technical Stack
 
-```bash
-# 1. Instalează dependențele
-npm install
+- **Framework:** [Next.js 14](https://nextjs.org/) (App Router)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Data Source:** [Google Sheets API](https://developers.google.com/sheets/api) (Lightweight CSV-based CMS)
+- **Deployment:** [Vercel](https://vercel.com/)
+- **Analytics:** Vercel Analytics & Speed Insights
 
-# 2. Copiază fișierul de variabile de mediu
-cp .env.example .env.local
+## 🏗️ Architecture: Google Sheets as a CMS
 
-# 3. Completează .env.local cu credențialele reale (vezi mai jos)
+To ensure the organizers could update participant data without technical knowledge, the application uses **Google Sheets as a serverless CMS**. 
 
-# 4. Pornește serverul de dezvoltare
-npm run dev
-```
+1. **Easy Management:** Organizers update names and seat numbers in a shared spreadsheet.
+2. **Server-Side Fetching:** The Next.js backend fetches the data via CSV export for maximum performance and simplicity.
+3. **Caching Strategy:** Implemented a short-lived cache (60s TTL) to minimize redundant network requests while keeping data fresh during peak traffic.
 
-Deschide [http://localhost:3000](http://localhost:3000).
+## 💻 Local Setup
 
----
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repo-url>
+   cd talant-2026-beclean
+   ```
 
-## Configurare Google Sheets
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-### 1. Creează un Google Sheet
+3. **Environment Configuration:**
+   Create a `.env.local` file in the root directory:
+   ```env
+   SHEET_ID=your_google_sheet_id_here
+   ```
 
-Structura tabelului (Sheet-ul trebuie să se numească **`Participants`**):
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) to see the result.
 
-| A – `nume`    | B – `categorie` | C – `loc` |
-|---------------|-----------------|-----------|
-| Ion Popescu   | Clasa a 2-a     | 14        |
-| Maria Ionescu | Clasa a 11-a    | 7         |
+## 📖 Project Structure
 
-- **Rândul 1** = header (ignorat automat)
-- **Rândul 2+** = participanți
-
-### 2. Completează `.env.local`
-
-```env
-SHEET_ID=1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms
-```
-
-> ⚠️ **IMPORTANT**: Nu pune niciodată `.env.local` în Git. Este deja inclus în `.gitignore`.
-
----
-
-## Deployment pe Vercel
-
-```bash
-# Instalează Vercel CLI (o singură dată)
-npm i -g vercel
-
-# Deploy
-vercel
-```
-
-**Sau** conectează repo-ul GitHub la Vercel prin interfața web.
-
-### Variabile de mediu pe Vercel
-
-Mergi la **Vercel Dashboard → Project → Settings → Environment Variables** și adaugă:
-
-| Key | Value |
-|-----|-------|
-| `SHEET_ID` | ID-ul sheet-ului |
-
----
-
-## Ce trebuie actualizat
-
-### Înainte de concurs
-
-- [ ] `app/program/page.js` → înlocuiește array-ul `PROGRAM` cu programul real
-- [ ] `app/live/page.js` → pune `YOUTUBE_URL` și `EMBED_URL`
-- [ ] Google Sheet → completează participanții cu locurile alocate
-
-### După concurs
-
-- [ ] `app/galerie/page.js` → pune `DRIVE_LINK` cu albumul foto
-- [ ] `app/barem/page.js` → pune `BAREM_LINK` (se deblochează la ora 13:00)
-
-### Domeniu custom (când e disponibil)
-
-În **Vercel Dashboard → Project → Settings → Domains** → adaugă domeniul custom.
-
----
-
-## Structura proiectului
-
-```
-talant2026/
+```text
 ├── app/
-│   ├── layout.js          # Layout global + Navbar + Footer
-│   ├── page.js            # Homepage
-│   ├── program/page.js    # Programul zilei
-│   ├── locatii/page.js    # Hărți și adrese
-│   ├── cautare/page.js    # Căutare participant
-│   ├── live/page.js       # Transmisiune live
-│   ├── barem/page.js      # Barem (blocat până la 13:00)
-│   ├── galerie/page.js    # Galerie foto
-│   └── api/search/
-│       └── route.js       # API endpoint căutare
-├── components/
-│   ├── Navbar.js
-│   └── Footer.js
-├── lib/
-│   └── sheets.js          # Integrare Google Sheets API
-└── .env.example
+│   ├── api/search/    # Backend endpoint for participant lookup
+│   ├── barem/         # Correction key release page
+│   ├── cautare/       # Room allocation search interface
+│   ├── live/          # Live stream integration
+│   ├── locatii/       # Event maps and addresses
+│   └── program/       # Event timeline
+├── components/        # Reusable UI components (Navbar, Footer, etc.)
+├── lib/               # Shared logic (Google Sheets integration)
+├── public/            # Static assets and event documents
+└── tailwind.config.js # Custom theme (Navy & Gold)
 ```
 
+## 🌟 Portfolio Context
+
+This project demonstrates my ability to:
+- Deliver a production-ready application for a high-traffic event.
+- Implement creative solutions for non-technical stakeholders (Google Sheets CMS).
+- Optimize for performance and mobile responsiveness.
+- Manage full-stack development using modern React patterns and server-side logic.
+
 ---
+
+*Note: This project was developed for the Pentecostal Church No. 1 Beclean as part of the regional Bible competition organization.*
